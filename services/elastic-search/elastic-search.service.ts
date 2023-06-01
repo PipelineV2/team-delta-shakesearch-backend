@@ -99,7 +99,7 @@ export class ElasticSearchService {
       await this.createIndex();
       const res = await this.indexDocuments();
 
-      return res;
+      return res["hits"]["hits"];
     } catch (error) {
       throw new Error(error);
     }
