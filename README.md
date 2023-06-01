@@ -15,12 +15,12 @@ http://localhost:3000/v1/
 `POST http://localhost:9000/v1/shake-search/create-index`
 
 - Search for any key word
-`POST http://localhost:9000/v1/shake-search/search 
-content-type: application/json
+`POST http://localhost:9000/v1/shake-search/search `
+`content-type: application/json`
 
-{
+`{`
     `"query": " prince of denmark"`
-}`
+`}`
 
 
 
