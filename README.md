@@ -1,4 +1,6 @@
-# shake-search team delta backend api
+# ShakeSearch Backend (Delta)
+Shakesearch (the name of the app) a simple web app that allows a user to search for a text string in the complete works of Shakespeare.
+
 
 ### Install dependencies
 `npm install`
