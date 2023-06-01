@@ -1,0 +1,10 @@
+POST http://localhost:9000/v1/shake-search/create-index  HTTP/1.1
+
+###
+POST http://localhost:9000/v1/shake-search/search  HTTP/1.1
+content-type: application/json
+
+{
+    "query": "no well"
+}
+

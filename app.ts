@@ -1,65 +1,34 @@
-import { config } from 'dotenv'
-config()
+import { config } from "dotenv";
+config();
 
-import * as express from 'express';
-import * as bodyParser from "body-parser";
-import * as mongoose from 'mongoose';
+import express from "express";
+import { Application } from "express";
+import bodyParser from "body-parser";
 
-import * as cors from 'cors'
+import cors from "cors";
 
-import { Routes } from './routes';
-
+import v1Routes from "./routes/v1";
 
 class App {
-    public app: express.Application;
-    public route: Routes = new Routes();
-    public mongoUrl: string = process.env.MONGO_URL;
+  public app: Application;
 
-    constructor() {
-        this.app = express();
-        this.config();
-        this.route.routes(this.app);
-       // this.mongoSetup();
-    }
+  constructor() {
+    this.app = express();
+    this.config();
 
-    private config(): void {
-        // support application/json type post data
-        this.app.use(bodyParser.json());
+    // this.mongoSetup();
+  }
 
-        
-        // support application/x-www-form-urlencoded post data
-        this.app.use(bodyParser.urlencoded({ extended: false}));
-        this.app.use(cors());
+  private config(): void {
+    // support application/json type post data
+    this.app.use(bodyParser.json());
 
-        // this.app.use(
-        //     cors({
-        //       origin: '*',
-        //       optionsSuccessStatus: 200,
-        //     })
-        //   )
+    // support application/x-www-form-urlencoded post data
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(cors());
 
-
-          //Enable CORS from client side
-        //     this.app.use(function (req, res, next) {
-        //     res.header("Access-Control-Allow-Origin", "*");
-        //     res.header('Access-Control-Allow-Methods', 'PUT,GET,DELETE,POST,OPTIONS');
-        //     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,Content-Type, Accept, Authorization' +' Access-Control-Allow-Credential');
-        //         res.header('Access-Control-Allow-Credentials', 'true');
-
-        //     next();
-        // });
-
-    }
-
-    private mongoSetup(): void {
-        // mongoose.Promise = global.Promise;
-        // mongoose.connect(this.mongoUrl, { useNewUrlParser: true });
-
-        mongoose.connect(this.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(res => { console.log(`${this.mongoUrl}`) })
-        .catch(err => { console.log('mongo error in connection:', err) });
-
-    }
+    this.app.use("/v1", v1Routes);
+  }
 }
 
 export default new App().app;

@@ -1,11 +1,13 @@
 # shake-search team delta backend api
 
 ### Install dependencies
-`yarn install`
+`npm install`
 
 
 ### Start the Server
-`yarn start:dev`
-This will start the server at `http://localhost:3000`
+`docker compose up`
+
+### Server Endpoint
+http:localhost:3000/v1/
 
 
