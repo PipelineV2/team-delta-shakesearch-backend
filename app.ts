@@ -26,7 +26,9 @@ class App {
     // support application/x-www-form-urlencoded post data
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cors());
-
+    this.app.get("/", (_req, res) => {
+      res.send("hello world");
+    });
     this.app.use("/v1", v1Routes);
   }
 }
