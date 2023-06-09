@@ -5,12 +5,12 @@ steps:
       [
         'build',
         '-t',
-        'us-central1-docker.pkg.dev/containerdemo-365021/shake-search',
+        'us-central1-docker.pkg.dev/containerdemo-365021/shake-search/app',
         '-f',
         'Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      ['push', 'us-central1-docker.pkg.dev/containerdemo-365021/shake-search']
+      ['push', 'us-central1-docker.pkg.dev/containerdemo-365021/shake-search/app']
 
