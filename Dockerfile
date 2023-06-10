@@ -10,7 +10,6 @@ COPY package*.json ./
 # Install application dependencies
 RUN npm install
 
-ENV ELASTIC_SEARCH_URI=https://my-deployment-dcda0d.es.us-central1.gcp.cloud.es.io
 
 
 # Copy the rest of the application code

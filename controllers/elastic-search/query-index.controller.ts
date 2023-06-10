@@ -18,7 +18,7 @@ export default AsyncHandler(
     return sendSuccessApiResponse({
       res,
       message: "results",
-      data: result,
+      data: result.hits.hits,
       status: "success",
     });
   }

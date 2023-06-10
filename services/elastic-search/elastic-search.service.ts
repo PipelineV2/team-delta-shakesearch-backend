@@ -1,4 +1,4 @@
-import elasticsearch from "elasticsearch";
+import { Client } from "@elastic/elasticsearch";
 import { config } from "dotenv";
 import path from "path";
 config();
@@ -7,8 +7,14 @@ import fs from "fs";
 export class ElasticSearchService {
   private client;
   constructor() {
-    this.client = new elasticsearch.Client({
-      host: process.env.ELASTIC_SEARCH_URI,
+    this.client = new Client({
+      cloud: {
+        id: process.env.ES_CLOUD_ID,
+      },
+      auth: {
+        username: process.env.ES_USER_NAME,
+        password: process.env.ES_PASS,
+      },
     });
   }
 
@@ -99,7 +105,7 @@ export class ElasticSearchService {
       await this.createIndex();
       const res = await this.indexDocuments();
 
-      return res["hits"]["hits"];
+      return res;
     } catch (error) {
       throw new Error(error);
     }
